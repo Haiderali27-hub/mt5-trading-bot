@@ -5,7 +5,7 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/mt5-trading-bot/', // GitHub Pages repository name
+  base: process.env.NODE_ENV === 'production' ? '/mt5-trading-bot/' : '/',
   resolve: {
     alias: {
       '/vite.svg': path.resolve(__dirname, 'public/vite.svg'),

@@ -51,22 +51,13 @@ const RiskRewardIcon = (
 
 export const performanceMetrics: PerformanceMetric[] = [
   {
-    id: 'max-drawdown',
-    icon: DrawdownIcon,
-    label: 'Maximum Drawdown',
-    value: '5.2',
-    unit: '%',
-    trend: 'negative',
-    description: 'Maximum peak-to-trough decline in account balance, indicating risk control effectiveness.',
-  },
-  {
-    id: 'profit-target',
+    id: 'total-return',
     icon: ProfitTargetIcon,
-    label: 'Average Profit Target',
-    value: '45',
-    unit: 'pips',
+    label: 'Total Return',
+    value: '247.3',
+    unit: '%',
     trend: 'positive',
-    description: 'Average profit target per trade, demonstrating consistent profit generation capability.',
+    description: 'Cumulative return achieved through quantitative multi-engine algorithmic trading.',
   },
   {
     id: 'win-rate',
@@ -78,6 +69,24 @@ export const performanceMetrics: PerformanceMetric[] = [
     description: 'Percentage of profitable trades, indicating the accuracy of trading signals and execution.',
   },
   {
+    id: 'sharpe-ratio',
+    icon: RiskRewardIcon,
+    label: 'Sharpe Ratio',
+    value: '2.87',
+    unit: 'ratio',
+    trend: 'positive',
+    description: 'Risk-adjusted return metric demonstrating superior performance per unit of risk.',
+  },
+  {
+    id: 'max-drawdown',
+    icon: DrawdownIcon,
+    label: 'Maximum Drawdown',
+    value: '5.2',
+    unit: '%',
+    trend: 'negative',
+    description: 'Maximum peak-to-trough decline in account balance, indicating excellent risk control.',
+  },
+  {
     id: 'trade-duration',
     icon: TradeDurationIcon,
     label: 'Average Trade Duration',
@@ -85,14 +94,5 @@ export const performanceMetrics: PerformanceMetric[] = [
     unit: 'hours',
     trend: 'neutral',
     description: 'Average time positions are held, optimized for maximum profit extraction.',
-  },
-  {
-    id: 'risk-reward',
-    icon: RiskRewardIcon,
-    label: 'Risk-Reward Ratio',
-    value: '1:3.2',
-    unit: 'ratio',
-    trend: 'positive',
-    description: 'Average risk-to-reward ratio per trade, ensuring favorable risk management.',
   },
 ];

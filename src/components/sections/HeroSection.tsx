@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from '../ui/Button';
 import { useTheme } from '../../theme';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
-import { ANIMATION_TIMING, ANIMATION_EASING } from '../../utils/animations';
+import { AnimatedSection } from '../animations/AnimatedSection';
 
 interface HeroSectionProps {
   className?: string;
@@ -11,61 +11,22 @@ interface HeroSectionProps {
 
 /**
  * Hero Section Component
- * Displays the main value proposition with headline, subheadline, and CTA
- * Features staggered entrance animations with specific delays
+ * Main landing section with MT5 Gold Trading Bot presentation
+ * Features dark theme with animated elements and call-to-action
  */
 export const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
   const theme = useTheme();
   const breakpoint = useMediaQuery();
   const isMobile = breakpoint === 'mobile';
-  const isTablet = breakpoint === 'tablet';
 
-  // Staggered animation variants with specific delays
-  const heroVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: ANIMATION_TIMING.slow,
-        ease: ANIMATION_EASING.easeOut,
-      },
-    },
+  const handleCTAClick = () => {
+    // Navigate to contact for licensing inquiry
+    window.open('mailto:exodellta@gmail.com?subject=MT5 Gold Trading Bot - Licensing Inquiry&body=I am interested in learning more about the MT5 Gold Trading Bot. Please provide licensing information.', '_blank');
   };
 
-  const headlineVariants = {
-    ...heroVariants,
-    visible: {
-      ...heroVariants.visible,
-      transition: {
-        ...heroVariants.visible.transition,
-        delay: 0, // 0ms delay
-      },
-    },
-  };
-
-  const subheadlineVariants = {
-    ...heroVariants,
-    visible: {
-      ...heroVariants.visible,
-      transition: {
-        ...heroVariants.visible.transition,
-        delay: 0.2, // 200ms delay
-      },
-    },
-  };
-
-  const ctaVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: ANIMATION_TIMING.medium,
-        ease: ANIMATION_EASING.easeOut,
-        delay: 0.4, // 400ms delay
-      },
-    },
+  const handleLearnMoreClick = () => {
+    // Scroll to features section
+    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const containerStyles: React.CSSProperties = {
@@ -73,32 +34,46 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'transparent', // Allow animations to show through
+    backgroundColor: 'transparent',
     padding: isMobile 
-      ? `${theme.spacing.xxl} ${theme.spacing.md}` 
+      ? `${theme.spacing.xxxl} ${theme.spacing.md}` 
       : `${theme.spacing.xxxl} ${theme.spacing.lg}`,
     textAlign: 'center',
+    position: 'relative',
   };
 
   const contentStyles: React.CSSProperties = {
-    maxWidth: '800px',
-    width: '100%',
+    maxWidth: '1000px',
+    margin: '0 auto',
+    zIndex: 2,
   };
 
-  // Responsive headline font size
-  const getHeadlineFontSize = () => {
-    if (isMobile) return '32px'; // 32px on mobile (lower end of 32-48px range)
-    if (isTablet) return '56px'; // 56px on tablet (between mobile and desktop)
-    return theme.typography.fontSize.display; // 72px on desktop
+  const badgeStyles: React.CSSProperties = {
+    display: 'inline-block',
+    backgroundColor: 'rgba(93, 214, 44, 0.1)',
+    border: `1px solid ${theme.colors.accent.primary}`,
+    borderRadius: '50px',
+    padding: `${theme.spacing.xs} ${theme.spacing.lg}`,
+    fontSize: theme.typography.fontSize.sm,
+    fontFamily: theme.typography.fontFamily.primary,
+    fontWeight: theme.typography.fontWeight.semibold,
+    color: theme.colors.accent.primary,
+    marginBottom: theme.spacing.lg,
+    textTransform: 'uppercase',
+    letterSpacing: '0.5px',
   };
 
   const headlineStyles: React.CSSProperties = {
-    fontSize: getHeadlineFontSize(),
+    fontSize: isMobile ? '48px' : '72px',
     fontFamily: theme.typography.fontFamily.primary,
     fontWeight: theme.typography.fontWeight.bold,
     color: theme.colors.text.primary,
     marginBottom: theme.spacing.lg,
     lineHeight: '1.1',
+    background: `linear-gradient(135deg, ${theme.colors.text.primary} 0%, ${theme.colors.accent.primary} 100%)`,
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
   };
 
   const subheadlineStyles: React.CSSProperties = {
@@ -107,8 +82,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
     fontWeight: theme.typography.fontWeight.normal,
     color: theme.colors.text.secondary,
     marginBottom: theme.spacing.xxl,
-    lineHeight: '1.5',
-    maxWidth: '600px',
+    lineHeight: '1.6',
+    maxWidth: '700px',
     margin: `0 auto ${theme.spacing.xxl} auto`,
   };
 
@@ -123,60 +98,61 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
 
   return (
     <section style={containerStyles} className={className} id="hero" data-testid="hero-section">
-      <div style={contentStyles}>
-        <motion.h1
-          style={headlineStyles}
-          variants={headlineVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          Advanced MT5 Gold Trading Bot
-        </motion.h1>
-        
-        <motion.p
-          style={subheadlineStyles}
-          variants={subheadlineVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          Harness the power of 40+ prediction engines, GPU acceleration, and machine learning models to maximize your gold trading profits with precision and speed.
-        </motion.p>
-        
-        <motion.div
-          style={ctaContainerStyles}
-          variants={ctaVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <Button
-            variant="primary"
-            size="large"
-            onClick={() => {
-              // Scroll to pricing section or handle CTA action
-              const pricingSection = document.getElementById('pricing');
-              if (pricingSection) {
-                pricingSection.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
+      <AnimatedSection>
+        <div style={contentStyles}>
+          <motion.div
+            style={badgeStyles}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            Get Started Now
-          </Button>
+            Advanced Algorithmic Trading
+          </motion.div>
+
+          <motion.h1
+            style={headlineStyles}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+          >
+            MT5 Gold Trading Bot
+          </motion.h1>
           
-          <Button
-            variant="outline"
-            size="large"
-            onClick={() => {
-              // Scroll to features section
-              const featuresSection = document.getElementById('features');
-              if (featuresSection) {
-                featuresSection.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
+          <motion.p
+            style={subheadlineStyles}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.4 }}
           >
-            Learn More
-          </Button>
-        </motion.div>
-      </div>
+            Professional-grade automated trading system with 40+ prediction engines, 
+            GPU acceleration, and institutional-level performance for XAUUSD markets.
+          </motion.p>
+          
+          <motion.div
+            style={ctaContainerStyles}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.6 }}
+          >
+            <Button
+              variant="primary"
+              size="large"
+              onClick={handleCTAClick}
+              data-testid="hero-cta-button"
+            >
+              Contact for Licensing
+            </Button>
+            
+            <Button
+              variant="outline"
+              size="large"
+              onClick={handleLearnMoreClick}
+            >
+              Learn More
+            </Button>
+          </motion.div>
+        </div>
+      </AnimatedSection>
     </section>
   );
 };

@@ -136,12 +136,15 @@ export const AnimatedBackground: React.FC = () => {
       {/* Canvas for particle system */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 pointer-events-none"
-        style={{ opacity: 0.6 }}
+        className="fixed inset-0 pointer-events-none"
+        style={{ 
+          opacity: 0.6,
+          zIndex: -1
+        }}
       />
       
       {/* Animated geometric shapes */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: -1 }}>
         {/* Floating hexagons */}
         {Array.from({ length: 8 }, (_, i) => (
           <motion.div

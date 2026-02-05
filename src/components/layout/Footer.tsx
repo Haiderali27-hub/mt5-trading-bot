@@ -262,7 +262,7 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
           <h3 style={headingStyles}>Contact</h3>
           <a
             style={linkStyles}
-            onClick={() => handleExternalLink('mailto:support@mt5goldbot.com')}
+            onClick={() => handleExternalLink('mailto:exodellta@gmail.com')}
             onMouseEnter={(e) => Object.assign(e.currentTarget.style, linkHoverStyles)}
             onMouseLeave={(e) => Object.assign(e.currentTarget.style, linkStyles)}
             role="button"
@@ -270,16 +270,16 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                handleExternalLink('mailto:support@mt5goldbot.com');
+                handleExternalLink('mailto:exodellta@gmail.com');
               }
             }}
             aria-label="Send email to support"
           >
-            support@mt5goldbot.com
+            exodellta@gmail.com
           </a>
           <a
             style={linkStyles}
-            onClick={() => handleExternalLink('tel:+1-555-0123')}
+            onClick={() => handleExternalLink('tel:+923001032005')}
             onMouseEnter={(e) => Object.assign(e.currentTarget.style, linkHoverStyles)}
             onMouseLeave={(e) => Object.assign(e.currentTarget.style, linkStyles)}
             role="button"
@@ -287,12 +287,12 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                handleExternalLink('tel:+1-555-0123');
+                handleExternalLink('tel:+923001032005');
               }
             }}
             aria-label="Call support phone number"
           >
-            +1 (555) 012-3456
+            +92 300 1032005
           </a>
           <span style={linkStyles} role="text">
             24/7 Customer Support
@@ -320,7 +320,7 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
       {/* Copyright Section */}
       <div style={copyrightStyles} data-testid="footer-copyright">
         <p>
-          © 2024 MT5 Gold Trading Bot. All rights reserved. | 
+          © 2024 EXO-Δ MT5 Gold Trading Bot. All rights reserved. | 
           <a
             style={{ ...linkStyles, marginLeft: theme.spacing.sm }}
             onClick={() => handleExternalLink('https://mt5goldbot.com/privacy')}

@@ -20,15 +20,13 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ className }) => 
   const isMobile = breakpoint === 'mobile';
 
   const handleCTAClick = () => {
-    // Navigate to download or external link
-    // For demo purposes, this could open a modal, redirect to a download page,
-    // or navigate to a contact form
-    window.open('https://example.com/download', '_blank');
+    // Navigate to contact for purchase inquiry
+    window.open('mailto:exodellta@gmail.com?subject=MT5 Gold Trading Bot - Licensing Inquiry&body=I am interested in licensing the MT5 Gold Trading Bot. Please provide pricing and licensing information.', '_blank');
   };
 
-  const handleLearnMoreClick = () => {
-    // Navigate to contact or more information
-    window.open('https://example.com/contact', '_blank');
+  const handleContactClick = () => {
+    // Navigate to contact for more information
+    window.open('mailto:exodellta@gmail.com?subject=MT5 Gold Trading Bot - Information Request&body=I would like to learn more about the MT5 Gold Trading Bot features and capabilities.', '_blank');
   };
 
   const containerStyles: React.CSSProperties = {
@@ -102,8 +100,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ className }) => 
             transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
             viewport={{ once: true }}
           >
-            Join thousands of traders who have revolutionized their gold trading with our advanced MT5 bot. 
-            Experience the power of AI-driven predictions and GPU-accelerated execution.
+            Experience professional-grade algorithmic trading with our exclusive MT5 Gold Trading Bot. 
+            Featuring 40+ prediction engines, GPU acceleration, and institutional-level performance.
           </motion.p>
 
           <motion.div
@@ -113,7 +111,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ className }) => 
             transition={{ duration: 0.5, ease: 'easeOut', delay: 0.3 }}
             viewport={{ once: true }}
           >
-            Get Started Today
+            Exclusive Licensing Available
           </motion.div>
           
           <motion.div
@@ -129,15 +127,15 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ className }) => 
               onClick={handleCTAClick}
               data-testid="pricing-cta-button"
             >
-              Download Now
+              Contact for Licensing
             </Button>
             
             <Button
               variant="outline"
               size="large"
-              onClick={handleLearnMoreClick}
+              onClick={handleContactClick}
             >
-              Learn More
+              Contact Sales
             </Button>
           </motion.div>
         </div>
